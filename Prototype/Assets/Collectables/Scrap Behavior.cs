@@ -15,7 +15,7 @@ public class ScrapBehavior : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //destroys the scrap and adds to the scrap total
     {
         ScrapCounter.totalscrap++;
         Destroy(transform.parent.gameObject);
