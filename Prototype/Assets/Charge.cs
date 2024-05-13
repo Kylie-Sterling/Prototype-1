@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Charge : MonoBehaviour
 {
@@ -33,28 +35,28 @@ public class Charge : MonoBehaviour
             PlayerBars player = FindAnyObjectByType<PlayerBars>();
             player.unit.charge = player.unit.maxCharge;
         }
-        if (other.gameObject.CompareTag("EnemyTag") && damageCD <= 0)
-        {
-            Charge c = FindAnyObjectByType<Charge>();
-                c.charge -= damageValue;
-            damageCD = iframeTime;
-        }
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Bonfire"))
-        {
-            PlayerBars player = FindAnyObjectByType<PlayerBars>();
-            player.unit.charge = player.unit.maxCharge;
-        }
+        Debug.Log("collision");
         if (collision.gameObject.CompareTag("EnemyTag") && damageCD <= 0)
         {
-            Debug.Log("Damage");
-            Charge c = FindAnyObjectByType<Charge>();
-                c.charge -= damageValue;
-            damageCD = iframeTime;
+            damageValue = collision.gameObject.GetComponent<EnemyDamage>().damageValue;
 
+            Debug.Log("Damage: " + damageValue.ToString());
+
+            charge -= damageValue;
+            damageCD = iframeTime;
+            if (charge <= 0)
+            {
+                OnDeath();
+            }
         }
+    }
+    void OnDeath()
+    {
+        string sceneName = SceneManager.GetActiveScene().ToString();
+        SceneManager.LoadScene(sceneName);
     }
 }

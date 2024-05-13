@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
             if (move != Vector3.zero)
             {
                 Vector3 newForward = new Vector3(move.x, transform.forward.y, move.z).normalized;
+                
+                
                 gameObject.transform.forward = newForward;
                 //animator.SetTrigger("walk");
                 /*string currentAnimation = playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
