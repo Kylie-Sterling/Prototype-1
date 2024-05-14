@@ -60,6 +60,6 @@ public class Charge : MonoBehaviour
     void OnDeath()
     {
         string sceneName = SceneManager.GetActiveScene().ToString();
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(0);
     }
 }
