@@ -3295,18 +3295,18 @@ MonoBehaviour:
   price1: 2
   quantity1: 1
   stock2: {fileID: 4637347822242170989, guid: acd4c2f594745f4439d8aa677c9b86ef, type: 3}
-  price2: 0
-  quantity2: 0
+  price2: 1
+  quantity2: 5
   stock3: {fileID: 4637347822242170989, guid: acd4c2f594745f4439d8aa677c9b86ef, type: 3}
-  price3: 0
-  quantity3: 0
-  stock4: {fileID: 4637347822242170989, guid: acd4c2f594745f4439d8aa677c9b86ef, type: 3}
+  price3: 1
+  quantity3: 5
+  stock4: {fileID: 7114577103266511647, guid: c70af2f36d3126e42bf0b77519e9d8d9, type: 3}
   price4: 0
   quantity4: 0
-  stock5: {fileID: 4637347822242170989, guid: acd4c2f594745f4439d8aa677c9b86ef, type: 3}
+  stock5: {fileID: 7114577103266511647, guid: c70af2f36d3126e42bf0b77519e9d8d9, type: 3}
   price5: 0
   quantity5: 0
-  stock6: {fileID: 4637347822242170989, guid: acd4c2f594745f4439d8aa677c9b86ef, type: 3}
+  stock6: {fileID: 7114577103266511647, guid: c70af2f36d3126e42bf0b77519e9d8d9, type: 3}
   price6: 0
   quantity6: 0
   stock7: {fileID: 4637347822242170989, guid: acd4c2f594745f4439d8aa677c9b86ef, type: 3}

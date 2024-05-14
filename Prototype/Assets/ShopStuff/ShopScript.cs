@@ -33,6 +33,9 @@ public class ShopScript : MonoBehaviour
     GameObject item1;
     GameObject item2;
     GameObject item3;
+    GameObject temp1;
+    GameObject temp2;
+    GameObject temp3;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,27 +73,45 @@ public class ShopScript : MonoBehaviour
         item1 = pages[page, 0];
         item2 = pages[page, 1];
         item3 = pages[page, 2];
-        item1 = Instantiate(item1, transform.position + new Vector3(0, 0, 2), Quaternion.Euler(transform.forward));
-        item2 = Instantiate(item2, transform.position + new Vector3(0, 0, 4), Quaternion.Euler(transform.forward));
-        item3 = Instantiate(item3, transform.position + new Vector3(0, 0, 6), Quaternion.Euler(transform.forward));
+        temp1 = Instantiate(item1, transform.position + new Vector3(0, 0, 2), Quaternion.Euler(transform.forward));
+        temp2 = Instantiate(item2, transform.position + new Vector3(0, 0, 4), Quaternion.Euler(transform.forward));
+        temp3 = Instantiate(item3, transform.position + new Vector3(0, 0, 6), Quaternion.Euler(transform.forward));
     }
 
     // Update is called once per frame
     void Update()
     {
-        Destroy(item1, 0);
-        Destroy(item2, 0);
-        Destroy(item3, 0);
+        if (Input.GetButtonDown("Fire1"))
+        {
+            page++;
+            if (page > 2)
+            {
+                page = 0;
+            }
+            
+        }
         DisplayPage();
     }
     void DisplayPage()
     {
+        Destroy(temp1);
+        Destroy(temp2);
+        Destroy(temp3); 
         item1 = pages[page, 0];
         item2 = pages[page, 1];
         item3 = pages[page, 2];
-        item1 = Instantiate(item1, transform.position + new Vector3(0, 0, 2), Quaternion.Euler(transform.forward));
-        item2 = Instantiate(item2, transform.position + new Vector3(0, 0, 4), Quaternion.Euler(transform.forward));
-        item3 = Instantiate(item3, transform.position + new Vector3(0, 0, 6), Quaternion.Euler(transform.forward));
+        if(item1 != null)
+        {
+            temp1 = Instantiate(item1, transform.position + new Vector3(0, 0, 2), Quaternion.Euler(transform.forward));
+        }
+        if (item2 != null)
+        {
+            temp2 = Instantiate(item2, transform.position + new Vector3(0, 0, 4), Quaternion.Euler(transform.forward));
+        }
+        if (item3 != null)
+        {
+            temp3 = Instantiate(item3, transform.position + new Vector3(0, 0, 6), Quaternion.Euler(transform.forward));
+        }
     }
     public void buyitem(int i)
     {
@@ -102,6 +123,7 @@ public class ShopScript : MonoBehaviour
         if (pandq[page*3+i,1] <= 0)
         {
             pages[page, i] = null;
+            DisplayPage();
         }
     }
 }
