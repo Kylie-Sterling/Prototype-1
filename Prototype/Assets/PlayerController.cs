@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
 
     public LayerMask layerMask;
-    [SerializeField] float jumpForce;
+    //[SerializeField] float jumpForce;
     [SerializeField] float groundDistance;
     Vector3 normal;
     Vector3 point;
@@ -69,10 +69,11 @@ public class PlayerController : MonoBehaviour
 
             if (move != Vector3.zero)
             {
-                Vector3 newForward = new Vector3(move.x, transform.forward.y, move.z).normalized;
+                Vector3 newForward = new Vector3(move.x, 0, move.z).normalized;
                 
                 
                 gameObject.transform.forward = newForward;
+                
                 //animator.SetTrigger("walk");
                 /*string currentAnimation = playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
                 if (currentAnimation != "roll")

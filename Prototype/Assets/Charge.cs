@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,8 @@ public class Charge : MonoBehaviour
     public float damageValue;
 
     public float iframeTime;
+
+    public bool invincible;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +43,7 @@ public class Charge : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("collision");
-        if (collision.gameObject.CompareTag("EnemyTag") && damageCD <= 0)
+        if (collision.gameObject.CompareTag("EnemyTag") && (damageCD <= 0 && !invincible))
         {
             damageValue = collision.gameObject.GetComponent<EnemyDamage>().damageValue;
 

@@ -286,10 +286,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.21, y: 0.21, z: 0.21}
+  m_LocalScale: {x: 0.21000001, y: 0.21000001, z: 0.21}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 441241209}
+  m_Father: {fileID: 518708488}
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
 --- !u!64 &46988874
 MeshCollider:
@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 441241210}
   - component: {fileID: 441241220}
   - component: {fileID: 441241219}
+  - component: {fileID: 441241221}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -467,7 +468,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1372562107}
-  - {fileID: 46988873}
+  - {fileID: 518708488}
   - {fileID: 87814919}
   m_Father: {fileID: 376100545}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -516,6 +517,7 @@ MonoBehaviour:
   damageCD: 0
   damageValue: 0
   iframeTime: 5
+  invincible: 0
 --- !u!114 &441241212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +607,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5b28b5a5-c193-46e5-9f52-0a6a06756a56
     m_ActionName: Gameplay/SwapWeapon[/XInputControllerWindows/dpad/right,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 441241221}
+        m_TargetAssemblyTypeName: Roll, Assembly-CSharp
+        m_MethodName: OnRoll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9e73e4d0-2e39-4c79-a093-b0633b4c8bf1
+    m_ActionName: Gameplay/Roll[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -632,7 +650,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1
-  jumpForce: 0
   groundDistance: 1.1
   ground: 0
 --- !u!136 &441241215
@@ -767,6 +784,22 @@ MonoBehaviour:
   playerController: {fileID: 441241213}
   animator: {fileID: 441241219}
   playerHealth: {fileID: 441241211}
+--- !u!114 &441241221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441241208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4003da571c3b3f441b97542c4c666c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRolling: 0
+  canRoll: 1
+  rollForce: 100
+  coolDown: 1
 --- !u!1001 &453752947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1065,6 +1098,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &518708487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 518708488}
+  m_Layer: 0
+  m_Name: model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &518708488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518708487}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 46988873}
+  m_Father: {fileID: 441241209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &590100359 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8618221836647229314, guid: c07e65547f8960e4a91c1875c03d1cb5, type: 3}
