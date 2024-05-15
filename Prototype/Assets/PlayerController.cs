@@ -49,12 +49,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        Ground();
-        if (!ground)
-        {
-            Gravity();
-        }
-
         if (isMobile)
         {
             Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
@@ -90,9 +84,18 @@ public class PlayerController : MonoBehaviour
 
         //playerAnimator.SetBool("roll", isDashing);
     }
+    void FixedUpdate()
+    {
+        Ground();
+        if (!ground)
+        {
+            Gravity();
+        }
+    }
     void Gravity()
     {
         rb.velocity -= Vector3.up * gravityValue * Time.deltaTime;
+        Debug.Log(rb.velocity);
     }
     void Ground()
     {
