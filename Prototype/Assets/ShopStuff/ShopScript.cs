@@ -69,7 +69,6 @@ public class ShopScript : MonoBehaviour
         pages[1, 2] = stock6;
 
         pages[2, 0] = stock7;
-
         item1 = pages[page, 0];
         item2 = pages[page, 1];
         item3 = pages[page, 2];
