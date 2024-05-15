@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     Vector3 point;
     [SerializeField] bool ground;
 
-
+    public GameObject lockOnTarget;
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -47,9 +47,84 @@ public class PlayerController : MonoBehaviour
         movementInput.x = Mathf.Clamp(movementInput.x, -1, 1);
         movementInput.y = Mathf.Clamp(movementInput.y, -1, 1);
     }
+    public void OnLockOn(InputAction.CallbackContext context)
+    {
+        LockOn();
+    }
     private void Update()
     {
-        
+        if (lockOnTarget != null)
+        {
+
+            float totalDistance = Vector3.Distance(transform.position, lockOnTarget.transform.position);
+            if (totalDistance > 30)
+            {
+                MeshRenderer renderer = lockOnTarget.GetComponent<MeshRenderer>();
+
+                renderer.enabled = false; // Disable the Mesh Renderer for other objects
+
+
+                lockOnTarget = null;
+            }
+        }
+    }
+    public void LockOn()
+    {
+        if (lockOnTarget != null)
+        {
+            MeshRenderer renderer = lockOnTarget.GetComponent<MeshRenderer>();
+
+            renderer.enabled = false; // Disable the Mesh Renderer for other objects
+
+
+
+            lockOnTarget = null;
+            return;
+        }
+        LockOnCore[] targets = FindObjectsOfType<LockOnCore>();
+        GameObject[] targetGameObjects = new GameObject[targets.Length];
+
+        for (int i = 0; i < targets.Length; i++)
+        {
+            targetGameObjects[i] = targets[i].gameObject;
+        }
+        GameObject closestObject = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach (GameObject target in targetGameObjects)
+        {
+            float totalDistance = Vector3.Distance(transform.position, target.transform.position);
+
+            if (totalDistance < shortestDistance)
+            {
+                shortestDistance = totalDistance;
+                closestObject = target; // Assign the closest object found
+                lockOnTarget = target;
+
+                Debug.Log(totalDistance);
+            }
+        }
+        foreach (GameObject obj in targetGameObjects)
+        {
+            MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+            if (renderer != null)
+            {
+                LockOnCore core = obj.GetComponent<LockOnCore>();
+                    
+                // Renderer is not null, you can safely access its properties or methods
+                if (obj == closestObject)
+                {
+                    renderer.enabled = true;
+                    core.canvasObject.SetActive(true);
+                }
+                else
+                {
+                    renderer.enabled = false; // Disable the Mesh Renderer for other objects
+                    core.canvasObject.SetActive(false);
+
+                }
+            }
+        }
     }
     private void Move()
     {
