@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        
+    }
+    private void Move()
+    {
         if (isMobile)
         {
             Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
@@ -64,10 +68,10 @@ public class PlayerController : MonoBehaviour
             if (move != Vector3.zero)
             {
                 Vector3 newForward = new Vector3(move.x, 0, move.z).normalized;
-                
-                
+
+
                 gameObject.transform.forward = newForward;
-                
+
                 //animator.SetTrigger("walk");
                 /*string currentAnimation = playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
                 if (currentAnimation != "roll")
@@ -86,11 +90,15 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Move();
+
         Ground();
         if (!ground)
         {
             Gravity();
         }
+
+
     }
     void Gravity()
     {
