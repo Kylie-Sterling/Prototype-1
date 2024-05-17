@@ -38,14 +38,9 @@ public class Charge : MonoBehaviour
             PlayerBars player = FindAnyObjectByType<PlayerBars>();
             player.unit.charge = player.unit.maxCharge;
         }
-        
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("collision");
-        if (collision.gameObject.CompareTag("EnemyTag") && (damageCD <= 0 && !invincible))
+        if (other.gameObject.CompareTag("EnemyTag") && (damageCD <= 0 && !invincible))
         {
-            damageValue = collision.gameObject.GetComponent<EnemyDamage>().damageValue;
+            damageValue = other.gameObject.GetComponent<EnemyDamage>().damageValue;
 
             Debug.Log("Damage: " + damageValue.ToString());
 
@@ -56,6 +51,11 @@ public class Charge : MonoBehaviour
                 OnDeath();
             }
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("collision");
+        
     }
     void OnDeath()
     {
