@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 8441446824122198763}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: EnemyTag
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 2
-  chargeRestore: 25
+  chargeRestore: 1
 --- !u!195 &7485785848512517249
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   agent: {fileID: 7485785848512517249}
   goal: {fileID: 0}
   stayChaseDistance: 15
-  stopChaseDistance: 3
+  stopChaseDistance: 2
   toggle: 0
 --- !u!1 &8179393934985003515
 GameObject:

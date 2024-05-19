@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,8 @@ public class Navigation : MonoBehaviour
     void Start()
     {
         //agent = GetComponent<NavMeshAgent>();
+        PlayerController p = FindAnyObjectByType<PlayerController>();
+        goal = p.gameObject.transform;
     }
 
     // Update is called once per frame
