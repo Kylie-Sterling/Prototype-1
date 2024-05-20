@@ -16,6 +16,8 @@ public class Weapon : MonoBehaviour
     public Weapon offHand;
 
     public float attackDamage;
+
+
     /*public float attackKnockbackMultiplier = 1;
 
     public float heavyAttackDamage;
