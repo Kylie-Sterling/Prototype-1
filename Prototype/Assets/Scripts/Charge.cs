@@ -37,9 +37,15 @@ public class Charge : MonoBehaviour
         {
             PlayerBars player = FindAnyObjectByType<PlayerBars>();
             player.unit.charge = player.unit.maxCharge;
+
+            Audio a = FindAnyObjectByType<Audio>();
+            a.PlaySound(3);
         }
         if (other.gameObject.CompareTag("EnemyTag") && (damageCD <= 0 && !invincible))
         {
+            Audio a = FindAnyObjectByType<Audio>();
+            a.PlaySound(1);
+
             damageValue = other.gameObject.GetComponent<EnemyDamage>().damageValue;
 
             Debug.Log("Damage: " + damageValue.ToString());

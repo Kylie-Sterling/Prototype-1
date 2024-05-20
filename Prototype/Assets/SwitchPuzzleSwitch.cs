@@ -13,6 +13,8 @@ public class SwitchPuzzleSwitch : MonoBehaviour
         Debug.Log("trigger");
         if (other.gameObject.CompareTag("Player"))
         {
+            Audio a = FindAnyObjectByType<Audio>();
+            a.PlaySound(0);
             Toggle();
             int check = ID - 1;
             Debug.Log(check);

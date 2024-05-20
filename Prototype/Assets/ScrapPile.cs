@@ -13,6 +13,8 @@ public class ScrapPile : MonoBehaviour
         WeaponSelecter w = FindAnyObjectByType<WeaponSelecter>();
         if (weapon != null && w.hitboxOn)
         {
+            Audio a = FindAnyObjectByType<Audio>();
+            a.PlaySound(1);
             if (weapon.weaponType == Weapon.types.HAMMER)
             {
                 ScrapCounter.totalscrap += withTool;

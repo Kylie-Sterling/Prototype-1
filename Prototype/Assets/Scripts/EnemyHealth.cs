@@ -46,7 +46,9 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        if(health <= 0)
+        Audio a = FindAnyObjectByType<Audio>();
+        a.PlaySound(1);
+        if (health <= 0)
         {
             Charge c = FindAnyObjectByType<Charge>();
             c.charge += chargeRestore;

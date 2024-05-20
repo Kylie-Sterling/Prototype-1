@@ -22,6 +22,8 @@ public class Elevator : MonoBehaviour
     {
         Debug.Log("ele");
         moving = true;
+        Audio a = FindAnyObjectByType<Audio>();
+        a.PlaySound(1);
     }
     void MoveToWaypoint()
     {
