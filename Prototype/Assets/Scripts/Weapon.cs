@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public enum element
+    {
+        none,
+        Fire,
+        Water,
+        Ground,
+        Electric,
+    };
     public enum types
     {
         SWORD,
         HAMMER,
     };
 
+    public element FusedElement;
     public types weaponType;
 
     public bool twoHands;
