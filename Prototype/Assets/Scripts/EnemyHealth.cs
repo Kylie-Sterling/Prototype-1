@@ -46,8 +46,6 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        Audio a = FindAnyObjectByType<Audio>();
-        a.PlaySound(1);
         if (health <= 0)
         {
             Charge c = FindAnyObjectByType<Charge>();
@@ -65,7 +63,10 @@ public class EnemyHealth : MonoBehaviour
         WeaponSelecter w = FindAnyObjectByType<WeaponSelecter>();
         if(weapon != null && w.hitboxOn)
         {
-            TakeDamage(weapon.damage);
+
+            Audio a = FindAnyObjectByType<Audio>();
+            a.PlaySound(1);
+            TakeDamage(weapon.attackDamage);
         }
         if(weapon.FusedElement != Weapon.element.none && currentEffect == Weapon.element.none)
         {
