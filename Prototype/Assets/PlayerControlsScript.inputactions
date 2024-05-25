@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "HeavyAttack",
+                    "type": "Button",
+                    "id": "3de51ff6-9c3c-432b-ab2f-eb0e76b4f477",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Movement",
                     "type": "PassThrough",
                     "id": "db2bcce7-d7d6-4a6c-9ea5-e3e5e4836e90",
@@ -54,6 +63,24 @@
                     "name": "LockOn",
                     "type": "Button",
                     "id": "dda4747a-a90d-4a59-901d-eaf364b414f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TargetUp",
+                    "type": "Button",
+                    "id": "beee5c99-56c4-4a8c-9780-5d29b730eb1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TargetDown",
+                    "type": "Button",
+                    "id": "ce76de26-ebd5-459a-9892-c4df42177780",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -234,6 +261,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90d27367-9422-482a-a30d-9055dd93775a",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ea25b8c-bb1d-4e4b-8120-fe17979624bb",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f43579a-0ea4-44b9-8ed6-5c5ac19e973d",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TargetUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a64e60a0-5379-4f92-90f2-d214453d1447",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TargetDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

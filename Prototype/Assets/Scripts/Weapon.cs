@@ -24,12 +24,14 @@ public class Weapon : MonoBehaviour
     public bool twoHands;
     public Weapon offHand;
 
+    public float damage;
+
     public float attackDamage;
+    public float heavyAttackDamage;
 
 
     /*public float attackKnockbackMultiplier = 1;
 
-    public float heavyAttackDamage;
     public float heavyAttackKnockbackMultiplier = 1;
 
     public float weaponArtDamage;

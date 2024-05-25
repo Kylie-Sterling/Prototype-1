@@ -8,6 +8,7 @@ TagManager:
   - Scrap
   - EnemyTag
   - Shopkeeper
+  - Enemy
   layers:
   - Default
   - TransparentFX

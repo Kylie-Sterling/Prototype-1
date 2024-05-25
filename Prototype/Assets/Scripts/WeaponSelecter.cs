@@ -74,10 +74,26 @@ public class WeaponSelecter : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
+        AttackFunction("light");
+    }
+    public void HeavyAttack(InputAction.CallbackContext context)
+    {
+        AttackFunction("heavy");
+    }
+    public void AttackFunction(string type)
+    {
         animator.SetInteger("Hits", consectutiveHits);
 
         Weapon currentWeapon = weapons[selectedWeaponIndex];
 
+        if(type == "light")
+        {
+            currentWeapon.damage = currentWeapon.attackDamage;
+        }
+        else if (type == "heavy")
+        {
+            currentWeapon.damage = currentWeapon.heavyAttackDamage;
+        }
         string currentAnimation = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
 
         if (currentAnimation == "idle" || consectutiveHits > 0 || currentAnimation == "run")
@@ -91,24 +107,28 @@ public class WeaponSelecter : MonoBehaviour
                     if (consectutiveHits == 1)
                     {
                         Debug.Log("Attacking with broad type weapon 0");
-                        animator.SetTrigger("sword_attack");
+                        animator.SetTrigger("sword_attack_"+type);
                     }
                     if (consectutiveHits == 2)
                     {
                         Debug.Log("Attacking with broad type weapon 1");
                         //animator.SetTrigger("broadAttack1");
                         animator.SetInteger("Hits", consectutiveHits);
+                        animator.SetTrigger("sword_attack_" + type);
+
                     }
 
                     break;
                 case types.HAMMER:
                     if (consectutiveHits == 1)
                     {
-                        animator.SetTrigger("hammer_attack");
+                        animator.SetTrigger("hammer_attack_" + type);
                     }
                     if (consectutiveHits >= 2)
                     {
                         animator.SetInteger("Hits", consectutiveHits);
+                        animator.SetTrigger("hammer_attack_" + type);
+
                     }
                     break;
                 default:

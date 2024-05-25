@@ -51,6 +51,9 @@ public class Audio : MonoBehaviour // modified script from breakout game
         {
             songLayers[0].loop = true; // sets the track to loop
             songLayers[0].Play(); // sets the track to begin playing
+
+            songLayers[1].loop = true; // sets the track to loop
+            songLayers[1].Play(); // sets the track to begin playing
         }
     }
     public void AddLayer(int i) // adds layers to the song

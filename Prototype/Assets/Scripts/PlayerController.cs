@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,6 +41,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool ground;
 
     public GameObject lockOnTarget;
+    public LockOnCore[] targets;
+    public int currentTargetIndex;
+    public float lockOnRange = 30f;
+
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -51,13 +56,23 @@ public class PlayerController : MonoBehaviour
     {
         LockOn();
     }
+    public void OnLockOnSwitchDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            CycleTargets(-1);
+    }
+    public void OnLockOnSwitchUp(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            CycleTargets(1);
+    }
     private void Update()
     {
         if (lockOnTarget != null)
         {
 
             float totalDistance = Vector3.Distance(transform.position, lockOnTarget.transform.position);
-            if (totalDistance > 30)
+            if (totalDistance > lockOnRange)
             {
                 MeshRenderer renderer = lockOnTarget.GetComponent<MeshRenderer>();
 
@@ -68,63 +83,98 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    bool isValid(GameObject obj)
+    {
+        float distance = Vector3.Distance(transform.position, obj.transform.position);
+        if (distance <= lockOnRange)
+        {
+            return true;
+        }
+        return false;
+    }
+    void Cycle(int direction)
+    {
+        currentTargetIndex += direction;
+        if (currentTargetIndex >= targets.Length)
+        {
+            currentTargetIndex = 0;
+        }
+        else if (currentTargetIndex < 0)
+        {
+            currentTargetIndex = targets.Length;
+        }
+        if (!isValid(targets[currentTargetIndex].gameObject))
+        {
+            Cycle(direction);
+        }
+    }
+    private void CycleTargets(int direction)
+    {
+        targets = FindObjectsOfType<LockOnCore>();
+
+        for(int i = 0; i < targets.Length; i++)
+        {
+            if (targets[i] == lockOnTarget)
+            {
+                currentTargetIndex = i;
+                break;
+            }
+        }
+        Cycle(direction);
+
+        DisableLockOn();
+
+        lockOnTarget = targets[currentTargetIndex].gameObject;
+        LockOnCore core = lockOnTarget.GetComponent<LockOnCore>();
+        core.canvasObject.SetActive(true);
+    }
+
     public void LockOn()
     {
         if (lockOnTarget != null)
         {
-            MeshRenderer renderer = lockOnTarget.GetComponent<MeshRenderer>();
-
-            renderer.enabled = false; // Disable the Mesh Renderer for other objects
-
-
-
-            lockOnTarget = null;
-            return;
+            DisableLockOn();
         }
-        LockOnCore[] targets = FindObjectsOfType<LockOnCore>();
-        GameObject[] targetGameObjects = new GameObject[targets.Length];
-
-        for (int i = 0; i < targets.Length; i++)
+        else
         {
-            targetGameObjects[i] = targets[i].gameObject;
-        }
-        GameObject closestObject = null;
-        float shortestDistance = float.MaxValue;
+            targets = FindObjectsOfType<LockOnCore>();
 
-        foreach (GameObject target in targetGameObjects)
-        {
-            float totalDistance = Vector3.Distance(transform.position, target.transform.position);
-
-            if (totalDistance < shortestDistance)
+            List<GameObject> validTargets = new List<GameObject>();
+            foreach (LockOnCore target in targets)
             {
-                shortestDistance = totalDistance;
-                closestObject = target; // Assign the closest object found
-                lockOnTarget = target;
-
-                Debug.Log(totalDistance);
-            }
-        }
-        foreach (GameObject obj in targetGameObjects)
-        {
-            MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
-            if (renderer != null)
-            {
-                LockOnCore core = obj.GetComponent<LockOnCore>();
-                    
-                // Renderer is not null, you can safely access its properties or methods
-                if (obj == closestObject)
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+                if (distance <= lockOnRange)
                 {
-                    renderer.enabled = true;
-                    core.canvasObject.SetActive(true);
-                }
-                else
-                {
-                    renderer.enabled = false; // Disable the Mesh Renderer for other objects
-                    core.canvasObject.SetActive(false);
-
+                    validTargets.Add(target.gameObject);
                 }
             }
+
+            if (validTargets.Count > 0)
+            {
+                float shortestDistance = float.MaxValue;
+                foreach (GameObject obj in validTargets)
+                {
+                    float totalDistance = Vector3.Distance(transform.position, obj.transform.position);
+                    if (totalDistance < shortestDistance)
+                    {
+                        shortestDistance = totalDistance;
+                        lockOnTarget = obj;
+                    }
+                }
+
+                LockOnCore core = lockOnTarget.GetComponent<LockOnCore>();
+                core.canvasObject.SetActive(true);
+            }
         }
+    }
+
+    private void DisableLockOn()
+    {
+        for(int i =0; i<targets.Length; i++)
+        {
+            targets[i].canvasObject.SetActive(false);
+        }
+        lockOnTarget = null;
     }
     private void Move()
     {

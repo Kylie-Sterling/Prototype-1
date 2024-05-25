@@ -7,6 +7,7 @@ public class enemyAttackAnimation : MonoBehaviour
     public Animator anim;
     private void OnTriggerEnter(Collider other)
     {
-        anim.SetTrigger("enemyAttack");
+        if(other.gameObject.CompareTag("Player"))
+            anim.SetTrigger("enemyAttack");
     }
 }

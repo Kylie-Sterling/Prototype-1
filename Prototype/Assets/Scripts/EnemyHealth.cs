@@ -65,7 +65,7 @@ public class EnemyHealth : MonoBehaviour
         WeaponSelecter w = FindAnyObjectByType<WeaponSelecter>();
         if(weapon != null && w.hitboxOn)
         {
-            TakeDamage(weapon.attackDamage);
+            TakeDamage(weapon.damage);
         }
         if(weapon.FusedElement != Weapon.element.none && currentEffect == Weapon.element.none)
         {

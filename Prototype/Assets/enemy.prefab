@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 8441446824122198763}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,8 +539,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  timer: 0
   maxHealth: 2
   chargeRestore: 1
+  currentEffect: 0
 --- !u!195 &7485785848512517249
 NavMeshAgent:
   m_ObjectHideFlags: 0
