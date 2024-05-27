@@ -413,6 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 8441446824122198763}
+  navController: {fileID: 239939595148887517}
 --- !u!1 &4782119276952892703
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,8 +540,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  timer: 0
   maxHealth: 2
   chargeRestore: 1
+  currentEffect: 0
 --- !u!195 &7485785848512517249
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -708,10 +711,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 7485785848512517249}
-  goal: {fileID: 0}
   stayChaseDistance: 15
-  stopChaseDistance: 2
-  toggle: 0
+  patrolWaypoints:
+  - {x: -1.5, y: 0, z: 175.27}
+  - {x: 1.5, y: 0, z: 175.27}
+  currentState: 3
 --- !u!1 &8179393934985003515
 GameObject:
   m_ObjectHideFlags: 0
