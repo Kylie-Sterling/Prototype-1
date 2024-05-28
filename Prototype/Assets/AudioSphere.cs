@@ -31,8 +31,8 @@ public class AudioSphere : MonoBehaviour
             float r = col.radius;
             float d = Vector3.Distance(player.transform.position, other.gameObject.transform.position);
             
-            float total = Mathf.Clamp01(1 - (d / r));
-            float t = total;
+            float total = d / r;
+            float t = 1 - total;
             audio.songLayers[0].volume = t;
             audio.songLayers[1].volume = total;
             if(t >= forceBattle)

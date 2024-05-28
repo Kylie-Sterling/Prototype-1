@@ -33,14 +33,7 @@ public class Charge : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag("Bonfire"))
-        {
-            PlayerBars player = FindAnyObjectByType<PlayerBars>();
-            player.unit.charge = player.unit.maxCharge;
-
-            Audio a = FindAnyObjectByType<Audio>();
-            a.PlaySound(3);
-        }
+        
         if (other.gameObject.CompareTag("EnemyTag") && (damageCD <= 0 && !invincible))
         {
             Audio a = FindAnyObjectByType<Audio>();

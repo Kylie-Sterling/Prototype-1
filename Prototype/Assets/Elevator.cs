@@ -20,10 +20,13 @@ public class Elevator : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ele");
-        moving = true;
-        Audio a = FindAnyObjectByType<Audio>();
-        a.PlaySound(1);
+        if (other.gameObject.CompareTag("player"))
+        {
+            Debug.Log("ele");
+            moving = true;
+            Audio a = FindAnyObjectByType<Audio>();
+            a.PlaySound(1);
+        }
     }
     void MoveToWaypoint()
     {

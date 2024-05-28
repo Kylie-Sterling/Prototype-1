@@ -215,6 +215,7 @@ Transform:
   - {fileID: 6855774572351085191}
   - {fileID: 3020963711523636420}
   - {fileID: 4611394404485636530}
+  - {fileID: 3088243616858433}
   m_Father: {fileID: 594644790031621529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4567331784125446167
@@ -285,13 +286,16 @@ MonoBehaviour:
   cam: {fileID: 0}
   rb: {fileID: 8266872758621445095}
   playerVelocity: {x: 0, y: 0, z: 0}
-  gravityValue: 150
+  gravityValue: 300
   layerMask:
     serializedVersion: 2
     m_Bits: 128
   groundDistance: 1.15
   ground: 0
   lockOnTarget: {fileID: 0}
+  targets: []
+  currentTargetIndex: 0
+  lockOnRange: 30
 --- !u!114 &4048613073130212305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +417,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: dda4747a-a90d-4a59-901d-eaf364b414f8
     m_ActionName: Gameplay/LockOn[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4376161010339240517}
+        m_TargetAssemblyTypeName: WeaponSelecter, Assembly-CSharp
+        m_MethodName: HeavyAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3de51ff6-9c3c-432b-ab2f-eb0e76b4f477
+    m_ActionName: Gameplay/HeavyAttack[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 458036395324600368}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLockOnSwitchUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: beee5c99-56c4-4a8c-9780-5d29b730eb1b
+    m_ActionName: Gameplay/TargetUp[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 458036395324600368}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLockOnSwitchDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ce76de26-ebd5-459a-9892-c4df42177780
+    m_ActionName: Gameplay/TargetDown[/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -510,7 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRolling: 0
   canRoll: 1
-  rollForce: 100
+  rollForce: 300
   coolDown: 1
 --- !u!54 &8266872758621445095
 Rigidbody:
@@ -831,6 +883,75 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3865677775870255956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3088243616858433}
+  - component: {fileID: 2834415395368390325}
+  - component: {fileID: 3840459159629765603}
+  m_Layer: 0
+  m_Name: BattleSphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3088243616858433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865677775870255956}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2472180196735746255}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2834415395368390325
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865677775870255956}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 20
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3840459159629765603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865677775870255956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e33af7abf2d58840b305603a8354c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceBattle: 0.8
+  forceChill: 0.1
+  player: {fileID: 1357918048154072987}
 --- !u!1 &7142923485744522246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +1132,6 @@ GameObject:
   - component: {fileID: 7085242198529786821}
   - component: {fileID: 5657967231269025362}
   - component: {fileID: 5046825454831856108}
-  - component: {fileID: 7592391551972219196}
   m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
@@ -1028,8 +1148,8 @@ Transform:
   m_GameObject: {fileID: 8293225224417082048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.138, z: 0.544}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.362, z: 0.416}
+  m_LocalScale: {x: 0.77, y: 0.3, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2472180196735746255}
@@ -1084,27 +1204,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7592391551972219196
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8293225224417082048}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8675291105997672624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5331919605833416500, guid: c07e65547f8960e4a91c1875c03d1cb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 5331919605833416500, guid: c07e65547f8960e4a91c1875c03d1cb5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1387,6 +1486,10 @@ PrefabInstance:
       propertyPath: FusedElement
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8618221836647229314, guid: c07e65547f8960e4a91c1875c03d1cb5, type: 3}
+      propertyPath: heavyAttackDamage
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1430,7 +1533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5331919605833416500, guid: ee483ee0ae8d50a44a2acce5321c2d7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5331919605833416500, guid: ee483ee0ae8d50a44a2acce5321c2d7d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1475,6 +1578,10 @@ PrefabInstance:
     - target: {fileID: 8618221836647229314, guid: ee483ee0ae8d50a44a2acce5321c2d7d, type: 3}
       propertyPath: FusedElement
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618221836647229314, guid: ee483ee0ae8d50a44a2acce5321c2d7d, type: 3}
+      propertyPath: heavyAttackDamage
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

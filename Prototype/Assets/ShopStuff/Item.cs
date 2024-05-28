@@ -18,9 +18,12 @@ public class Item : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetButtonDown("Jump"))
+        if (other.gameObject.CompareTag("player"))
         {
-            transform.parent.gameObject.GetComponent<ShopScript>().buyitem(itemnum);
+            if (Input.GetButtonDown("Jump"))
+            {
+                transform.parent.gameObject.GetComponent<ShopScript>().buyitem(itemnum);
+            }
         }
     }
 }
